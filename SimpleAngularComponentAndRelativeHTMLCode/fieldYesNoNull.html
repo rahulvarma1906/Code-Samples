@@ -1,0 +1,23 @@
+<div
+  class="form-group"
+  ng-class="{ 'has-error': $ctrl.triggerValidation() }">
+  <label class="control-label" ng-bind="::$ctrl.labelText"></label>
+  <select
+    class="form-control"
+    ng-model="$ctrl.value"
+    ng-change="$ctrl.onUpdate({ value: $ctrl.value })"
+    ng-required="$ctrl.inputRequired"
+    name="{{ ::$ctrl.inputName }}"
+    ng-options="key for (key, value) in ::$ctrl.options">
+    <option value="" ng-bind="::$ctrl.nullLabel"></option>
+  </select>
+  <div
+    ng-messages="$ctrl.form[$ctrl.inputName].$error"
+    ng-if="$ctrl.triggerValidation()"
+    class="help-block">
+    <ng-message when="required">
+      <span class="glyphicon glyphicon-exclamation-sign"></span>
+      This field is required.
+    </ng-message>
+  </div>
+</div>
